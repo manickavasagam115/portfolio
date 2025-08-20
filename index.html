@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --accent: #4F46E5;
+            --dark: #1E293B;
+            --light: #F8FAFC;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            scroll-behavior: smooth;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .wave {
+            animation: wave 2s linear infinite;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            10% {
+                transform: rotate(14deg);
+            }
+
+            20% {
+                transform: rotate(-8deg);
+            }
+
+            30% {
+                transform: rotate(14deg);
+            }
+
+            40% {
+                transform: rotate(-4deg);
+            }
+
+            50% {
+                transform: rotate(10deg);
+            }
+
+            60% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-xl font-bold text-gray-900">
+                        <span
+                            class="gradient-text bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">React
+                            Developer</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home"
+                        class="nav-link text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="#about"
+                        class="nav-link text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="#skills"
+                        class="nav-link text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+                    <a href="#projects"
+                        class="nav-link text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                    <a href="#contact"
+                        class="nav-link text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-700 hover:text-purple-600 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-purple-600 hover:bg-gray-50">Home</a>
+                <a href="#about"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-purple-600 hover:bg-gray-50">About</a>
+                <a href="#skills"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-purple-600 hover:bg-gray-50">Skills</a>
+                <a href="#projects"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-purple-600 hover:bg-gray-50">Projects</a>
+                <a href="#contact"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-purple-600 hover:bg-gray-50">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 gradient-bg text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Hi, I'm <span
+                            class="text-yellow-300">Manickavasagam</span></h1>
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold mb-6">Frontend Developer</h2>
+                    <p class="text-lg mb-8 opacity-90">With 2+ years of experience building modern web applications
+                        using
+                        Html, Css,Javascript, React and NEXT.js</p>
+                    <div class="flex space-x-4">
+                        <a href="#contact"
+                            class="px-6 py-3 bg-white text-purple-600 rounded-lg font-medium hover:bg-gray-100 transition duration-300">Hire
+                            Me</a>
+                        <a href="#projects"
+                            class="px-6 py-3 border-2 border-white text-white rounded-lg font-medium hover:bg-white hover:text-purple-600 transition duration-300">View
+                            Work</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div
+                            class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-white bg-opacity-20 flex items-center justify-center">
+                            <img src="image/profile.jpg" alt="Developer"
+                                class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover object-top border-4 border-white"
+                                  />
+                        </div>
+                        <div
+                            class="absolute -bottom-5 -right-5 bg-yellow-400 text-purple-800 px-4 py-2 rounded-full font-bold animate-float">
+                            <span class="wave inline-block">👋</span> Available for work
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">About <span class="text-purple-600">Me</span>
+            </h2>
+
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                    <div class="relative">
+                        <div class="w-64 h-64 rounded-2xl overflow-hidden shadow-xl">
+                            <img src="https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80"
+                                alt="About Me" class="w-full h-full object-cover">
+                        </div>
+                        <div
+                            class="absolute -bottom-4 -right-4 bg-purple-600 text-white px-4 py-2 rounded-lg font-medium">
+                            <i class="fas fa-code mr-2"></i> 2+ Years Experience
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-2/3 md:pl-12">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Who am I?</h3>
+                    <p class="text-gray-600 mb-6">
+                        I'm a passionate React Developer with 2+ years of professional experience in building
+                        scalable and efficient web applications. I specialize in creating modern, responsive, and
+                        user-friendly interfaces and who has strong belief that pressure and challenges fuel personal
+                        and professional growth. I aim to contribute to building impactful,
+                        high-performance applications
+                        that solve real-world problems and create meaningful user experiences..
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center mr-3">
+                                    <i class="fas fa-graduation-cap text-purple-600"></i>
+                                </div>
+                                <h4 class="font-medium text-gray-800">Education</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm">
+                                Bachelor of Engineering in EEE<br>
+                                at Nandha Engineering College, 2022
+                            </p>
+                        </div>
+
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center mr-3">
+                                    <i class="fas fa-briefcase text-yellow-600"></i>
+                                </div>
+                                <h4 class="font-medium text-gray-800">Experience</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm">
+                                Frontend Developer at Gove Enterprises.<br>
+                                2023 - Present
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-4">
+                        <!-- <a href="#" -->
+                        <a href="image/Manickavasagam Resume.docx" download
+                            class="px-4 py-2 bg-purple-600 text-white rounded-lg flex items-center hover:bg-purple-700 transition">
+                            <i class="fas fa-download mr-2"></i> Download CV
+                        </a>
+                        <a href="#contact"
+                            class="px-4 py-2 border border-purple-600 text-purple-600 rounded-lg flex items-center hover:bg-purple-50 transition">
+                            <i class="fas fa-paper-plane mr-2"></i> Contact Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">My <span
+                    class="text-purple-600">Skills</span></h2>
+
+            <div class="mb-12">
+                <h3 class="text-xl font-semibold mb-6 text-gray-700">Frontend Development</h3>
+                <div class="flex flex-wrap gap-4">
+                    <div
+                        class="skill-badge px-6 py-3 bg-white shadow-md rounded-full flex items-center hover:shadow-lg">
+                        <i class="fab fa-react text-blue-500 text-xl mr-2"></i>
+                        <span>React.js</span>
+                    </div>
+                    <div
+                        class="skill-badge px-6 py-3 bg-white shadow-md rounded-full flex items-center hover:shadow-lg">
+                        <span class="iconify mr-2" data-icon="logos:nextjs-icon" data-width="20"
+                            data-height="20"></span>
+                        <span>Next.js</span>
+                    </div>
+                    <div
+                        class="skill-badge px-6 py-3 bg-white shadow-md rounded-full flex items-center hover:shadow-lg">
+                        <i class="fas fa-bolt text-green-500 text-xl mr-2"></i>
+                        <span>GSAP</span>
+                    </div>
+
+                    <div
+                        class="skill-badge px-6 py-3 bg-white shadow-md rounded-full flex items-center hover:shadow-lg">
+                        <i class="fab fa-js text-yellow-500 text-xl mr-2"></i>
+                        <span>JavaScript</span>
+                    </div>
+                    <div
+                        class="skill-badge px-6 py-3 bg-white shadow-md rounded-full flex items-center hover:shadow-lg">
+                        <i class="fab fa-html5 text-orange-500 text-xl mr-2"></i>
+                        <span>HTML5</span>
+                    </div>
+                    <div
+                        class="skill-badge px-6 py-3 bg-white shadow-md rounded-full flex items-center hover:shadow-lg">
+                        <i class="fab fa-css3-alt text-blue-400 text-xl mr-2"></i>
+                        <span>CSS3</span>
+                    </div>
+                    <div
+                        class="skill-badge px-6 py-3 bg-white shadow-md rounded-full flex items-center hover:shadow-lg">
+                        <span class="iconify mr-2" data-icon="logos:rxdb" data-width="20" data-height="20"></span>
+                        <span>RxDB</span>
+                    </div>
+                    <div
+                        class="skill-badge px-6 py-3 bg-white shadow-md rounded-full flex items-center hover:shadow-lg">
+                        <span class="iconify mr-2" data-icon="logos:material-ui" data-width="20"
+                            data-height="20"></span>
+                        <span>MUI</span>
+                    </div>
+                    <div
+                        class="skill-badge px-6 py-3 bg-white shadow-md rounded-full flex items-center hover:shadow-lg">
+                        <i class="fab fa-bootstrap text-purple-500 text-xl mr-2"></i>
+                        <span>Bootstrap</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div>
+                <h3 class="text-xl font-semibold mb-6 text-gray-700">Other Skills</h3>
+                <div class="flex flex-wrap gap-4">
+                    <div
+                        class="skill-badge px-6 py-3 bg-white shadow-md rounded-full flex items-center hover:shadow-lg">
+                        <i class="fab fa-git-alt text-orange-600 text-xl mr-2"></i>
+                        <span>Git</span>
+                    </div>
+                    <div
+                        class="skill-badge px-6 py-3 bg-white shadow-md rounded-full flex items-center hover:shadow-lg">
+                        <i class="fab fa-github text-gray-800 text-xl mr-2"></i>
+                        <span>GitHub</span>
+                    </div>
+
+                    <!-- <div
+                        class="skill-badge px-6 py-3 bg-white shadow-md rounded-full flex items-center hover:shadow-lg">
+                        <span class="iconify mr-2" data-icon="logos:docker-icon" data-width="20"
+                            data-height="20"></span>
+                        <span>Docker</span>
+                    </div>
+                    <div
+                        class="skill-badge px-6 py-3 bg-white shadow-md rounded-full flex items-center hover:shadow-lg">
+                        <span class="iconify mr-2" data-icon="logos:jenkins" data-width="20" data-height="20"></span>
+                        <span>Jenkins</span>
+                    </div> -->
+                    <div
+                        class="skill-badge px-6 py-3 bg-white shadow-md rounded-full flex items-center hover:shadow-lg">
+                        <i class="fas fa-mobile-alt text-blue-400 text-xl mr-2"></i>
+                        <span>Responsive Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">My <span
+                    class="text-purple-600">Projects</span></h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="image/snakegame.jpg" alt="Snake Game" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">E-commerce Dashboard</h3>
+                            <!-- <span
+                                class="px-2 py-1 bg-purple-100 text-purple-600 text-xs font-semibold rounded">MERN</span> -->
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            A classic Snake Game using vanilla JavaScript, HTML, and CSS. The game features dynamic
+                            movement where the snake navigates across the game area based on arrow key inputs from the
+                            user.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-600 rounded">HTML</span>
+                            <span class="text-xs px-2 py-1 bg-green-100 text-green-600 rounded">CSS</span>
+                            <span class="text-xs px-2 py-1 bg-yellow-100 text-yellow-600 rounded">JavaScript</span>
+                        </div>
+
+                        <div class="flex space-x-3">
+                            <a href="https://github.com/manickavasagam115/snakegame" target="_blank"
+                                rel="noopener noreferrer" class="text-purple-600 hover:text-purple-800">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="https://snake-game-ec9921.netlify.app/" target="_blank" rel="noopener noreferrer"
+                                class="text-purple-600 hover:text-purple-800">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 1 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="image/mojito.jpg" alt="Snake Game" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">mojito Webpage</h3>
+                            <!-- <span class="px-2 py-1 bg-purple-100 text-purple-600 text-xs font-semibold rounded">MERN</span> -->
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            A classic Snake Game using vanilla JavaScript, HTML, and CSS. The game features dynamic
+                            movement where the snake navigates across the game area based on arrow key inputs from the
+                            user.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-600 rounded">HTML</span>
+                            <span class="text-xs px-2 py-1 bg-green-100 text-green-600 rounded">CSS</span>
+                            <span class="text-xs px-2 py-1 bg-yellow-100 text-yellow-600 rounded">JavaScript</span>
+                            <span class="text-xs px-2 py-1 bg-purple-100 text-purple-600 rounded">React js</span>
+                            <span class="text-xs px-2 py-1 bg-pink-100 text-pink-600 rounded">GSAP</span>
+
+
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="https://github.com/manickavasagam115/mojito" target="_blank"
+                                rel="noopener noreferrer" class="text-purple-600 hover:text-purple-800">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="https://mojito-iota.vercel.app/" target="_blank" rel="noopener noreferrer"
+                                class="text-purple-600 hover:text-purple-800">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Project 2 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="image/studentmanagementsystem.jpg" alt="Task Management App"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Student Management System</h3>
+                            <!-- <span
+                                class="px-2 py-1 bg-purple-100 text-purple-600 text-xs font-semibold rounded">MERN</span> -->
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            I developed an full-stack Student Management System using MERN. The application enables us
+                            make CRUD operations.It has responsive css design for different screen sizes.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-600 rounded">React</span>
+                            <span class="text-xs px-2 py-1 bg-green-100 text-green-600 rounded">Node.js</span>
+                            <span class="text-xs px-2 py-1 bg-yellow-100 text-yellow-600 rounded">MongoDB</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="https://github.com/manickavasagam115/student-management-system-client" target="_blank"
+                                rel="noopener noreferrer" class="text-purple-600 hover:text-purple-800">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="https://student-management-system-client-bay.vercel.app/" target="_blank" rel="noopener noreferrer"
+                                class="text-purple-600 hover:text-purple-800">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Get In <span
+                    class="text-purple-600">Touch</span></h2>
+
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-800">Contact Information</h3>
+                    <p class="text-gray-600 mb-8">
+                        Feel free to reach out to me for any questions or opportunities. I'm always open to
+                        opportunities .
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div
+                                class="flex-shrink-0 h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Email</h4>
+                                <a href="mailto:alex@example.com"
+                                    class="text-gray-800 hover:text-purple-600">manickam115@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div
+                                class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-phone-alt text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Phone</h4>
+                                <a href="tel:+1234567890" class="text-gray-800 hover:text-purple-600">6374117016
+
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div
+                                class="flex-shrink-0 h-10 w-10 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Location</h4>
+                                <p class="text-gray-800">Chennai</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <h4 class="text-lg font-semibold mb-4 text-gray-800">Follow Me</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/manickavasagam115" target="_blank" rel="noopener noreferrer"
+                                class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 hover:bg-purple-600 hover:text-white transition">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/manicka-vasagam-1152000manik/" target="_blank"
+                                rel="noopener noreferrer"
+                                class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 hover:bg-blue-600 hover:text-white transition">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2">
+                    <form action="https://formspree.io/f/xdkzvlwe" method="POST"
+                        class="bg-white p-6 rounded-lg shadow-md">
+                        <!-- class="bg-white p-6 rounded-lg shadow-md"> -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://yourportfolio.netlify.app/thank-you.html">
+
+                        <div class="mb-6">
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                            <input type="text" name="name" id="name"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                                placeholder="Enter Your Name" required>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
+                            <input type="email" name="email" id="email"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                                placeholder="Enter Your Email" required>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                            <input type="text" name="subject" id="subject"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                                placeholder="Eg: Job Inquiry" required>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your
+                                Message</label>
+                            <textarea name="message" id="message" rows="5"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                                placeholder="Hello, I would like to talk about..." required></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-purple-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-purple-700 transition duration-300 flex items-center justify-center">
+                            <i class="fas fa-paper-plane mr-2"></i> Send Message
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="#" class="text-xl font-bold">
+                        <span
+                            class="gradient-text bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Frontend
+                            Dev</span>
+                    </a>
+                    <p class="text-gray-400 mt-1">Building digital experiences that matter.</p>
+                </div>
+
+                <div class="flex space-x-6">
+                    <a href="https://github.com/manickavasagam115" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/manicka-vasagam-1152000manik/" target="_blank"
+                        rel="noopener noreferrer" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 All rights reserved.</p>
+
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top"
+        class="fixed bottom-8 right-8 bg-purple-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-purple-700 transition duration-300 hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        const mobileLinks = document.querySelectorAll('#mobile-menu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.remove('hidden');
+            } else {
+                backToTopBtn.classList.add('hidden');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
